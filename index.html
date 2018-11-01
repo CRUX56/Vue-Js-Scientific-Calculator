@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.Js Scientific Calculator</title>
+</head>
+<body>
+    
+    <!-- APP VIEW HERE -->
+
+    <div id="app">
+
+        <!-- THE ENTIRE HTML WILL BE PLACED INSIDE OF THE DIV -->
+
+        <!-- CALCULATOR INPUT SCREEN -->
+
+        <div class="results">
+            <input type="text" class="input" v-model="current">
+        </div>
+
+        <button class="button" v-on:click="press">7</button>
+        <button class="button" v-on:click="press">8</button>
+        <button class="button" v-on:click="press">9</button>
+        <button class="button" v-on:click="press">4</button>
+        <button class="button" v-on:click="press">5</button>
+        <button class="button" v-on:click="press">6</button>
+        <button class="button" v-on:click="press">1</button>
+        <button class="button" v-on:click="press">2</button>
+        <button class="button" v-on:click="press">3</button>
+        <button class="button equal-sign" v-on:click="press">=</button>
+        <button class="button" v-on:click="press">C</button>
+        <button class="button" v-on:click="press">*</button>
+        <button class="button" v-on:click="press">/</button>
+        <button class="button" v-on:click="press">√</button>
+        <button class="button" v-on:click="press">x ²</button>
+
+    </div>
+
+</body>
+
+<script src="https://unpkg.com/vue"/>
+
+<script>
+    
+    // VUE APP HERE
+
+    // NEW VUE INSTANCE
+
+    var app = new Vue({
+
+        // ELEMENT PROPERTY POINTS TO DOM
+        el: "#app",
+        data:{
+            // the data used for
+            // building the app goes here
+            current: '',
+        },
+        methods : {
+            // the functions we'll use in 
+            // controlling the app goes in here
+            press: function(event) {
+                // WE MAKE A REFERENCE TO THE INNER TEXT
+                // OF EACH BUTTON TO DISPATCH OUR FUNCTIONS
+                let key = event.target.innerText;
+                    if (
+                        key != '=' &&
+                        key != 'C' &&
+                        key != '*' &&
+                        key != '/' &&
+                        key != '√' &&
+                        key != 'x ²'
+                    ){
+                        app.current += key;
+                    } else if (key === '=') {
+                        equals();
+                    } else if (key === 'C') {
+                        clear();
+                    } else if (key === '*') {
+                        multiply();
+                    } else if (key === '/') {
+                        divide();
+                    } else if (key === '√') {
+                        squareRoot();
+                    } else if (key === 'x ²') {
+                        square();
+                    }
+                }
+            }
+
+    });
+
+</script>
+
+</html>
